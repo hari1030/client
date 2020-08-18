@@ -1,20 +1,6 @@
 import React,{Component} from 'react';
 import './App.css';
-var async=require("async");
-// var fs=require('fs');
-
-var arr=[];
-var q = async.queue(function(task, callback) {
-  console.log('Number ' + task);
-  // fs.writeFile('file.txt',task);
-  setTimeout(function(){
-    callback();
-  },5000);
-}, 2);  //perform two tasks at a time
-
-q.drain = function() {
-  console.log('All items have been processed');
-};
+import axios from 'axios';
 
 class App extends Component {
   state={
@@ -22,7 +8,9 @@ class App extends Component {
   }
   submit = (e) => {
     e.preventDefault();
-    arr.push(this.state.value);
+    axios.post(`/${this.state.value}`).then((res)=>{
+      console.log(res.data);
+    })
   }
   update = (e) => {
     this.setState({
@@ -31,10 +19,8 @@ class App extends Component {
   }
   emptyQueue = (e) => {
     e.preventDefault();
-    arr.forEach(function(val) {
-      q.push(val, function() {
-        console.log('finished processing');
-      });
+    axios.post('/').then((res)=>{
+      console.log(res.data);
     })
   }
   render() {
