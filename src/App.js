@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <h3>Enter Messages</h3>
+          <h3> Enter Messages </h3>
           <input
             type="text"
             id="sender"
@@ -54,8 +54,7 @@ class App extends Component {
           ></input>
           <br />
           <br />
-          <button onClick={this.submit}>Submit</button>
-          <br />
+          <button onClick={this.submit}> Submit </button> <br />
           <br />
         </form>
         <Messages />
